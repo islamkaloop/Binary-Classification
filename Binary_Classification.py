@@ -3,6 +3,7 @@ print("import libraries...")
 from sklearn.svm import LinearSVC
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
+from sklearn.naive_bayes import GaussianNB,BernoulliNB,MultinomialNB,ComplementNB
 from sklearn.metrics import accuracy_score, classification_report
 # import libs
 import pandas as pd
@@ -74,4 +75,65 @@ if(acc>max_acc):
   max_trained_model = SVC
   max_trained_model_str = "lineaar SVC model"
 print("classification_report \n"+str(classification_report(y_val,y_pred)))
+input("Press Enter to continue...")
+
+# we change our text data to nums but it still text data
+# so we try Naive Bayes algo
+# Gaussian
+print("train Gaussian Naive Bayes model...")
+Gaussian = GaussianNB()
+y_pred = Gaussian.fit(tr_features, y_tr).predict(val_features)
+print("Gaussian results:")
+acc = accuracy_score(y_val,y_pred)
+print("accuracy_score = "+str(acc))
+if(acc>max_acc):
+  max_acc = acc
+  max_trained_model = Gaussian
+  max_trained_model_str = "Gaussian Naive Bayes model"
+print("classification_report \n"+str(classification_report(y_val,y_pred)))
+input("Press Enter to continue...")
+
+# Multinomial
+print("train Multinomial Naive Bayes model...")
+Multinomial = MultinomialNB()
+y_pred = Multinomial.fit(tr_features, y_tr).predict(val_features)
+print("Multinomial results:")
+acc = accuracy_score(y_val,y_pred)
+print("accuracy_score = "+str(acc))
+if(acc>max_acc):
+  max_acc = acc
+  max_trained_model = Multinomial
+  max_trained_model_str = "Multinomial Naive Bayes model"
+print("classification_report \n"+str(classification_report(y_val,y_pred)))
+input("Press Enter to continue...")
+
+# Complement
+print("train Complement Naive Bayes model...")
+Complement = ComplementNB()
+y_pred = Complement.fit(tr_features, y_tr).predict(val_features)
+print("Complement results:")
+acc = accuracy_score(y_val,y_pred)
+print("accuracy_score = "+str(acc))
+if(acc>max_acc):
+  max_acc = acc
+  max_trained_model = Complement
+  max_trained_model_str = "Complement Naive Bayes model"
+print("classification_report \n"+str(classification_report(y_val,y_pred)))
+input("Press Enter to continue...")
+
+# Bernoulli
+print("train Bernoulli Naive Bayes model...")
+Bernoulli = BernoulliNB()
+y_pred = Bernoulli.fit(tr_features, y_tr).predict(val_features)
+print("Bernoulli results:")
+acc = accuracy_score(y_val,y_pred)
+print("accuracy_score = "+str(acc))
+if(acc>max_acc):
+  max_acc = acc
+  max_trained_model = Bernoulli
+  max_trained_model_str = "Bernoulli Naive Bayes model"
+print("classification_report \n"+str(classification_report(y_val,y_pred)))
+input("Press Enter to continue...")
+
+print("the max accuracy is "+ str(max_acc) +" achieved by "+max_trained_model_str)
 input("Press Enter to continue...")
