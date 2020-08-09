@@ -1,3 +1,6 @@
+# please, make sure that you have these libs installed on your device
+# sklearn,  pandas, pickle
+
 # we use sklearn as it is just a machine learning
 print("import libraries...")
 from sklearn.svm import LinearSVC
@@ -7,6 +10,7 @@ from sklearn.naive_bayes import GaussianNB,BernoulliNB,MultinomialNB,ComplementN
 from sklearn.metrics import accuracy_score, classification_report
 # import libs
 import pandas as pd
+import pickle
 import os
 
 max_acc = 0
@@ -137,3 +141,8 @@ input("Press Enter to continue...")
 
 print("the max accuracy is "+ str(max_acc) +" achieved by "+max_trained_model_str)
 input("Press Enter to continue...")
+
+# save the best model to use in microservice
+print("save the model with max accuracy...")
+filename = 'model.sav'
+pickle.dump(max_trained_model, open(filename, 'wb'))
